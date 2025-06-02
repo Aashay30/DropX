@@ -1,0 +1,14 @@
+to know the SQL , relations , keep things online
+
+user given facade that we are inside a folder
+
+only one schema --> self relationships ** VIMP **
+
+clerk for auth --> with no branding
+heroui for ui
+image kit for handling the images --> restrict files types to be uploaded
+neon postgres for database
+drizzle as ORM (Object Relational Mapping) --> schemaas , relations , 
+latest nextjs --> security by middleware in nextjs 
+
+1. npx create-next-app@latest .
