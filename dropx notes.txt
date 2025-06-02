@@ -11,9 +11,6 @@ neon postgres for database
 drizzle as ORM (Object Relational Mapping) --> schemaas , relations , 
 latest nextjs --> security by middleware in nextjs 
 
-<<<<<<< HEAD
-1. npx create-next-app@latest .
-=======
 1. npx create-next-app@latest .
 
 full stack app :
@@ -21,4 +18,3 @@ auth -> clerk
 business logic -> store info -> design schema -> 
 storage -> imagekit
 
->>>>>>> ce054eb (project init)
