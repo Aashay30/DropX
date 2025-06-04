@@ -23,3 +23,8 @@ on backend we use ORM (drizzle here) to interact with DB (postgresql -- > neon)
 
 in schemas folder we have zod schema for signin and signup
 
+next.js , zod ,react hook form and clerk for auth with own custom branding
+clerk == user management platform
+
+using zod as form resolver
+
