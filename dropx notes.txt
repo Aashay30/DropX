@@ -28,3 +28,7 @@ clerk == user management platform
 
 using zod as form resolver
 
+imagekit --> media delivey and management platform
+its a media processing api
+so they store the data and applies their media processing engine
+also applies the AI features on it --> like expand , make circular , img optimizations
