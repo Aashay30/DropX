@@ -10,6 +10,7 @@ image kit for handling the images --> restrict files types to be uploaded
 neon postgres for database
 drizzle as ORM (Object Relational Mapping) --> schemaas , relations , 
 latest nextjs --> security by middleware in nextjs 
+zod --> page validation library
 
 1. npx create-next-app@latest .
 
@@ -18,3 +19,4 @@ auth -> clerk
 business logic -> store info -> design schema -> 
 storage -> imagekit
 
+on backend we use ORM (drizzle here) to interact with DB (postgresql -- > neon)
