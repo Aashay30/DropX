@@ -33,9 +33,7 @@ export default function SignUpForm() {
   const [authError, setAuthError] = useState<string | null>(null); // Stores authentication errors
   const [verifying, setVerifying] = useState(false); // Tracks if user is in email verification step
   const [verificationCode, setVerificationCode] = useState(""); // Stores the entered verification code
-  const [verificationError, setVerificationError] = useState<string | null>(
-    null
-  ); // Stores verification errors
+  const [verificationError, setVerificationError] = useState<string | null>(null); // Stores verification errors
   const [showPassword, setShowPassword] = useState(false); // Toggles password visibility
   const [showConfirmPassword, setShowConfirmPassword] = useState(false); // Toggles confirm password visibility
 
@@ -320,8 +318,7 @@ export default function SignUpForm() {
             <div className="flex items-start gap-2">
               <CheckCircle className="h-5 w-5 text-primary mt-0.5" />
               <p className="text-sm text-default-600">
-                By signing up, you agree to our Terms of Service and Privacy
-                Policy
+                By signing up, you agree to our Terms of Service and Privacy Policy
               </p>
             </div>
           </div>

@@ -79,7 +79,7 @@ export default function SignInForm() {
         <Card className="w-full max-w-md border border-default-200 bg-default-50 shadow-xl">
             {/* Card header with title and subtitle */}
             <CardHeader className="flex flex-col gap-1 items-center pb-2">
-                <h1 className="text-2xl font-bold text-default-900">Welcome Back</h1>
+                <h1 className="text-2xl font-bold text-default-900">Welcome Back!</h1>
                 <p className="text-default-500 text-center">
                     Sign in to access your secure cloud storage
                 </p>
