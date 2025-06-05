@@ -91,11 +91,5 @@ export const siteConfig = {
 
         docs: "https://heroui.com",
         // Documentation homepage
-
-        discord: "https://discord.gg/9b6yyZKmH4",
-        // Community Discord for support, feedback, and collaboration
-
-        sponsor: "https://patreon.com/jrgarciadev",
-        // Sponsorship or donation link (optional for open-source devs)
     },
 };
