@@ -32,3 +32,14 @@ imagekit --> media delivey and management platform
 its a media processing api
 so they store the data and applies their media processing engine
 also applies the AI features on it --> like expand , make circular , img optimizations
+
+How to handle folder --
+
+1. create entry point
+2. auth with clerk
+3. take input from user --> folder name
+4. also take and match user id
+5. validation for foldername
+6. parentID check
+7. if yes then verify --> match the parentID --> must belong to user --> should be a folder --> create folder --> insert in DB
+8. if no --> mark as null as considering it as root item
