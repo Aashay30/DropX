@@ -24,7 +24,6 @@ export default function Error({
   useEffect(() => {
     // Log the error to console when the component mounts or when the error changes.
     // This is useful for debugging and integrating with logging tools like Sentry, LogRocket, etc.
-    /* eslint-disable no-console */
     console.error(error);
   }, [error]); // Dependency array ensures effect runs when the `error` changes
 

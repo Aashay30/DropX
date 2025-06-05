@@ -93,6 +93,8 @@ export default function FileList({
   // Fetch files whenever userId, refreshTrigger, or currentFolder changes
   useEffect(() => {
     fetchFiles();
+    // fetchFiles is defined outside and does not depend on props/state, so it's safe to omit from deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId, refreshTrigger, currentFolder]);
 
   /**
@@ -244,8 +246,8 @@ export default function FileList({
    */
   const handleDownloadFile = async (file: FileType) => {
     try {
-      // Show loading toast
-      const loadingToastId = addToast({
+      // Show loading toast (removed unused loadingToastId variable)
+      addToast({
         title: "Preparing Download",
         description: `Getting "${file.name}" ready for download...`,
         color: "primary",

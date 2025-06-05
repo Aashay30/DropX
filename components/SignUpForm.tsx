@@ -1,12 +1,12 @@
-"use client"; // Enables React Server Components to use client-side features
+"use client";
 
 import { useState } from "react";
-import { useForm } from "react-hook-form"; // For form state management and validation
-import { zodResolver } from "@hookform/resolvers/zod"; // Integrates Zod schema validation with react-hook-form
-import { useSignUp } from "@clerk/nextjs"; // Clerk hook for sign-up logic
-import { useRouter } from "next/navigation"; // Next.js router for navigation
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useSignUp } from "@clerk/nextjs";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { z } from "zod"; // Zod for schema validation
+import { z } from "zod";
 import { Button } from "@heroui/button";
 import { Input } from "@heroui/input";
 import { Card, CardBody, CardHeader, CardFooter } from "@heroui/card";
@@ -18,32 +18,27 @@ import {
   CheckCircle,
   Eye,
   EyeOff,
-} from "lucide-react"; // Icon components
-import { signUpSchema } from "@/schemas/signUpSchema"; // Zod schema for sign-up form
+} from "lucide-react";
+import { signUpSchema } from "@/schemas/signUpSchema";
 
 export default function SignUpForm() {
-  // Router for navigation after successful sign-up
   const router = useRouter();
-
-  // Clerk sign-up hook: provides signUp object, loading state, and setActive function
   const { signUp, isLoaded, setActive } = useSignUp();
 
-  // Local state for form submission, errors, verification, and password visibility
-  const [isSubmitting, setIsSubmitting] = useState(false); // Tracks if form is submitting
-  const [authError, setAuthError] = useState<string | null>(null); // Stores authentication errors
-  const [verifying, setVerifying] = useState(false); // Tracks if user is in email verification step
-  const [verificationCode, setVerificationCode] = useState(""); // Stores the entered verification code
-  const [verificationError, setVerificationError] = useState<string | null>(null); // Stores verification errors
-  const [showPassword, setShowPassword] = useState(false); // Toggles password visibility
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false); // Toggles confirm password visibility
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [authError, setAuthError] = useState<string | null>(null);
+  const [verifying, setVerifying] = useState(false);
+  const [verificationCode, setVerificationCode] = useState("");
+  const [verificationError, setVerificationError] = useState<string | null>(null);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  // Set up react-hook-form with Zod schema validation and default values
   const {
-    register, // Registers input fields
-    handleSubmit, // Handles form submission
-    formState: { errors }, // Contains validation errors
+    register,
+    handleSubmit,
+    formState: { errors },
   } = useForm<z.infer<typeof signUpSchema>>({
-    resolver: zodResolver(signUpSchema), // Use Zod for validation
+    resolver: zodResolver(signUpSchema),
     defaultValues: {
       email: "",
       password: "",
@@ -53,30 +48,37 @@ export default function SignUpForm() {
 
   // Handles sign-up form submission
   const onSubmit = async (data: z.infer<typeof signUpSchema>) => {
-    if (!isLoaded) return; // Wait for Clerk to load
+    if (!isLoaded) return;
 
-    setIsSubmitting(true); // Set loading state
-    setAuthError(null); // Reset previous errors
+    setIsSubmitting(true);
+    setAuthError(null);
 
     try {
-      // Create user with Clerk
       await signUp.create({
         emailAddress: data.email,
         password: data.password,
       });
 
-      // Trigger email verification step
       await signUp.prepareEmailAddressVerification({ strategy: "email_code" });
-      setVerifying(true); // Switch to verification UI
-    } catch (error: any) {
-      // Handle and display errors
+      setVerifying(true);
+    } catch (error) {
+      // Type-safe error handling
+      if (
+        typeof error === "object" &&
+        error !== null &&
+        "errors" in error &&
+        Array.isArray((error as { errors: Array<{ message?: string }> }).errors)
+      ) {
+        setAuthError(
+          (error as { errors: Array<{ message?: string }> }).errors?.[0]?.message ||
+            "An error occurred during sign-up. Please try again."
+        );
+      } else {
+        setAuthError("An error occurred during sign-up. Please try again.");
+      }
       console.error("Sign-up error:", error);
-      setAuthError(
-        error.errors?.[0]?.message ||
-          "An error occurred during sign-up. Please try again."
-      );
     } finally {
-      setIsSubmitting(false); // Reset loading state
+      setIsSubmitting(false);
     }
   };
 
@@ -91,29 +93,34 @@ export default function SignUpForm() {
     setVerificationError(null);
 
     try {
-      // Attempt to verify email with entered code
       const result = await signUp.attemptEmailAddressVerification({
         code: verificationCode,
       });
 
       if (result.status === "complete") {
-        // If verification successful, activate session and redirect
         await setActive({ session: result.createdSessionId });
         router.push("/dashboard");
       } else {
-        // If verification not complete, show error
-        console.error("Verification incomplete:", result);
         setVerificationError(
           "Verification could not be completed. Please try again."
         );
+        console.error("Verification incomplete:", result);
       }
-    } catch (error: any) {
-      // Handle and display verification errors
+    } catch (error) {
+      if (
+        typeof error === "object" &&
+        error !== null &&
+        "errors" in error &&
+        Array.isArray((error as { errors: Array<{ message?: string }> }).errors)
+      ) {
+        setVerificationError(
+          (error as { errors: Array<{ message?: string }> }).errors?.[0]?.message ||
+            "An error occurred during verification. Please try again."
+        );
+      } else {
+        setVerificationError("An error occurred during verification. Please try again.");
+      }
       console.error("Verification error:", error);
-      setVerificationError(
-        error.errors?.[0]?.message ||
-          "An error occurred during verification. Please try again."
-      );
     } finally {
       setIsSubmitting(false);
     }
@@ -128,7 +135,6 @@ export default function SignUpForm() {
             Verify Your Email
           </h1>
           <p className="text-default-500 text-center">
-            {/* We've sent a verification code to your email */}
             We&apos;ve sent a verification code to your email
           </p>
         </CardHeader>
@@ -136,7 +142,6 @@ export default function SignUpForm() {
         <Divider />
 
         <CardBody className="py-6">
-          {/* Show verification error if any */}
           {verificationError && (
             <div className="bg-danger-50 text-danger-700 p-4 rounded-lg mb-6 flex items-center gap-2">
               <AlertCircle className="h-5 w-5 flex-shrink-0" />
@@ -144,7 +149,6 @@ export default function SignUpForm() {
             </div>
           )}
 
-          {/* Verification code form */}
           <form onSubmit={handleVerificationSubmit} className="space-y-6">
             <div className="space-y-2">
               <label
@@ -174,10 +178,8 @@ export default function SignUpForm() {
             </Button>
           </form>
 
-          {/* Option to resend code */}
           <div className="mt-6 text-center">
             <p className="text-sm text-default-500">
-              {/* Didn't receive a code?{" "} */}
               Didn&apos;t receive a code?{" "}
               <button
                 onClick={async () => {
@@ -213,7 +215,6 @@ export default function SignUpForm() {
       <Divider />
 
       <CardBody className="py-6">
-        {/* Show authentication error if any */}
         {authError && (
           <div className="bg-danger-50 text-danger-700 p-4 rounded-lg mb-6 flex items-center gap-2">
             <AlertCircle className="h-5 w-5 flex-shrink-0" />
@@ -221,9 +222,7 @@ export default function SignUpForm() {
           </div>
         )}
 
-        {/* Sign-up form */}
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-          {/* Email field */}
           <div className="space-y-2">
             <label
               htmlFor="email"
@@ -243,7 +242,6 @@ export default function SignUpForm() {
             />
           </div>
 
-          {/* Password field with show/hide toggle */}
           <div className="space-y-2">
             <label
               htmlFor="password"
@@ -278,7 +276,6 @@ export default function SignUpForm() {
             />
           </div>
 
-          {/* Confirm password field with show/hide toggle */}
           <div className="space-y-2">
             <label
               htmlFor="passwordConfirmation"
@@ -313,7 +310,6 @@ export default function SignUpForm() {
             />
           </div>
 
-          {/* Terms and conditions notice */}
           <div className="space-y-4">
             <div className="flex items-start gap-2">
               <CheckCircle className="h-5 w-5 text-primary mt-0.5" />
@@ -323,7 +319,6 @@ export default function SignUpForm() {
             </div>
           </div>
 
-          {/* Submit button */}
           <Button
             type="submit"
             color="primary"
@@ -337,7 +332,6 @@ export default function SignUpForm() {
 
       <Divider />
 
-      {/* Link to sign-in page for existing users */}
       <CardFooter className="flex justify-center py-4">
         <p className="text-sm text-default-600">
           Already have an account?{" "}
