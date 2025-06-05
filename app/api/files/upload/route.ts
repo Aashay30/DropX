@@ -113,6 +113,13 @@ export async function POST(request: NextRequest) {
         };
 
         // 💾 Insert metadata into the database and return the newly created file record
+        /* 
+        
+        db.insert(...).values(...).returning() returns an array of objects, where each object represents a row that was inserted.
+
+        Even if you insert just one row, the return value is still an array with one item.
+
+        */
         const [newFile] = await db.insert(files).values(fileData).returning();
 
         // ✅ Respond with the saved file record
