@@ -49,3 +49,21 @@ the actual data will come in files only
 
 GET route for files --
 
+simply first auth the user
+then check for parent if any
+return the files with same userID by matching them and the returning response
+
+HOW TO MAKE ENDPOINT FOR UPLOAD FILE  --
+
+1. take a form data
+2. upload image to imagekit
+3. inside POSt route make a auth user
+4. parse form data
+5. match with userID form backend
+6. put file validation
+7. check for parentID
+8. if yes --> ensure that it exists --> it belongs to the user --> check as it should be folder --> 
+9. upload in root directory
+10. check for file type --> only image and pdf are allowed
+11. convert file to buffer --> imaekit converts the file to buffer
+12. finally generate a file name
