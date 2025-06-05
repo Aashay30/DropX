@@ -1,6 +1,6 @@
 import SignUpForm from "@/components/SignUpForm";
-import { CloudUpload } from "lucide-react"; // Imported but not used in this component
-import Link from "next/link"; // Imported but not used in this component
+// import { CloudUpload } from "lucide-react"; // Imported but not used in this component
+// import Link from "next/link"; // Imported but not used in this component
 import Navbar from "@/components/Navbar";
 
 /**
