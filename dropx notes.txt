@@ -43,3 +43,9 @@ How to handle folder --
 6. parentID check
 7. if yes then verify --> match the parentID --> must belong to user --> should be a folder --> create folder --> insert in DB
 8. if no --> mark as null as considering it as root item
+
+hence we can say that folder is just the path and used to display in frontend
+the actual data will come in files only 
+
+GET route for files --
+
