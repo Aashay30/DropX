@@ -520,8 +520,6 @@ Working on **DropX** helped me apply and deepen practical skills across the full
 
 ---
 
----
-
 ## ⭐ DropX Project: STAR-Format Behavioral Interview Answers
 
 Use these as ready-made templates for behavioral interview questions about technical challenges, learning, and problem-solving.
