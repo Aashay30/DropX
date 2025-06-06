@@ -520,4 +520,84 @@ Working on **DropX** helped me apply and deepen practical skills across the full
 
 ---
 
+---
+
+## ⭐ DropX Project: STAR-Format Behavioral Interview Answers
+
+Use these as ready-made templates for behavioral interview questions about technical challenges, learning, and problem-solving.
+
+---
+
+### 🔐 Clerk Integration & RBAC
+
+- **Situation:** We needed secure authentication and role-based access in DropX.
+- **Task:** Implement Clerk to manage auth and restrict access based on roles.
+- **Action:** Integrated Clerk’s client/server APIs, added email verification, and set up role guards using middleware and conditional UI.
+- **Result:** Delivered a secure auth system with seamless onboarding and reliable role-based UI rendering, improving the app’s access control.
+
+---
+
+### 🗂️ Folder-File Hierarchy with PostgreSQL
+
+- **Situation:** Users needed to organize files into nested folders.
+- **Task:** Design a database schema supporting recursive folder structures.
+- **Action:** Created a self-referencing table using Drizzle ORM, handled cascading soft-deletes, and optimized retrieval using recursive queries.
+- **Result:** Achieved a robust and scalable file system, which handled edge cases like rename, restore, and deletion efficiently.
+
+---
+
+### 🖼️ Real-Time Image Optimization
+
+- **Situation:** Large image uploads slowed down the UI and load times.
+- **Task:** Ensure fast, responsive image loading across devices.
+- **Action:** Integrated ImageKit for on-the-fly image transformations and added responsive previews with loading states.
+- **Result:** Enhanced perceived performance and user experience significantly, with minimal latency on uploads or previews.
+
+---
+
+### 🗑️ Soft Delete & Trash Recovery
+
+- **Situation:** Users wanted the ability to recover deleted files.
+- **Task:** Implement a trash system with a 30-day recovery window.
+- **Action:** Used a `deletedAt` field to soft-delete, built restore logic in UI, and filtered queries based on time-based conditions.
+- **Result:** Enabled non-destructive deletes, which improved user trust and flexibility in file management.
+
+---
+
+### 🌙 Theme Toggle & Hydration Handling
+
+- **Situation:** The app required dark mode with SSR support.
+- **Task:** Implement a theme toggle without causing hydration issues.
+- **Action:** Used `next-themes` for persistent theme handling and ensured hydration safety with client-only guards.
+- **Result:** Delivered a consistent light/dark theme UX across all pages, including server-rendered routes.
+
+---
+
+### 🧑‍💻 Clerk with Next.js Server Components
+
+- **Situation:** Clerk’s client-centric nature conflicted with Server Components in Next.js.
+- **Task:** Securely manage auth across both client and server layers.
+- **Action:** Utilized Clerk’s `auth()`/`getAuth()` on server routes, and carefully separated logic between server-only and client-only contexts.
+- **Result:** Maintained secure access control without breaking SSR functionality or leaking sensitive data.
+
+---
+
+### 🚀 Vercel Deployment & Secrets Management
+
+- **Situation:** Needed to deploy securely with different environments (dev/prod).
+- **Task:** Configure secrets and environment variables across environments.
+- **Action:** Used `.env` files and Vercel’s environment manager to safely isolate variables, including Clerk and DB credentials.
+- **Result:** Enabled seamless CI/CD workflows and ensured no secrets were leaked during deployment.
+
+---
+
+### 📦 Learning a New ORM (Drizzle)
+
+- **Situation:** Drizzle ORM was relatively new with limited documentation.
+- **Task:** Set up relational schemas and migrations quickly.
+- **Action:** Explored community resources, built modular schema components, and wrote migration scripts.
+- **Result:** Successfully handled complex schema relationships and became proficient in Drizzle — a skill transferable to other ORM tools.
+
+---
+
 This project was a significant milestone in sharpening my skills across front-end, back-end, DevOps, and product thinking — and laid a strong foundation for building robust, scalable web applications in production environments.
