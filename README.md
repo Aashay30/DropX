@@ -298,7 +298,7 @@ These challenges helped improve the architecture, developer experience, and robu
 
 ---
 
-## 🧩 Challenges & Problems Faced During Development (Interview-Focused)
+## 🧩 Challenges & Problems Faced During Development
 
 Building **DropX** involved tackling several complex, real-world issues — each of which sharpened my ability to think critically, debug effectively, and make informed engineering decisions. These challenges reflect the kind of scenarios often brought up in **technical interviews, system design rounds, and behavioral assessments**.
 
@@ -444,7 +444,7 @@ Used visual feedback (toasts, loaders) and real-time state updates to improve th
 
 ---
 
-## 🎯 Key Takeaways from the Project (Interview-Focused)
+## 🎯 Key Takeaways from the Project
 
 Working on **DropX** helped me apply and deepen practical skills across the full stack. These takeaways not only enhanced my technical foundation but also strengthened my system design and problem-solving mindset — making me better prepared for real-world engineering roles and interviews.
 
@@ -520,9 +520,7 @@ Working on **DropX** helped me apply and deepen practical skills across the full
 
 ---
 
-## ⭐ DropX Project: STAR-Format Behavioral Interview Answers
-
-Use these as ready-made templates for behavioral interview questions about technical challenges, learning, and problem-solving.
+## ⭐ DropX Project: STAR-Format
 
 ---
 
